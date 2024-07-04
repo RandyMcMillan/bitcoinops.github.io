@@ -1,0 +1,23 @@
+version: '3.4'
+services:
+
+  alpine-base:
+    container_name: ${PROJECT_NAME:-bitcoinops}_${HOST_UID:-4000}
+    hostname: ${PROJECT_NAME:-bitcoinops}
+    environment:
+      - UID=${HOST_UID:-4000}
+    user: ${HOST_USER:-bitconops}
+    image: ${PROJECT_NAME:-bitcoinops}:${HOST_USER:-nodummy}
+    privileged: true
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - HOST_UID=${HOST_UID:-4000}
+        - HOST_USER=${HOST_USER:-bitcoinops}
+        - SSH_PRIVATE_KEY=${SSH_PRIVATE_KEY:-0}
+        - DOCKER_RVM=msati/docker-rvm
+        - PASSWORD=${PASSWORD:-changeme}
+    command: ["tail", "-f", "/dev/null"]
+    volumes:
+      - ${HOME:-.}:/home/${HOST_USER:-bitcoinops}

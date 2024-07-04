@@ -7,7 +7,7 @@ production: clean all production-test
 ## it tries to paginate the output, see:
 ## https://github.com/bitcoinops/bitcoinops.github.io/pull/494#discussion_r546376335
 export GIT_PAGER='_contrib/kill0'
-JEKYLL_FLAGS = --future --drafts --unpublished --incremental
+JEKYLL_FLAGS = --future --drafts --unpublished --incremental --verbose --trace
 
 ## Expected filenames in output directory
 compatibility_validation = $(wildcard _compat/en/*.md)
